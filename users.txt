@@ -1,0 +1,3 @@
+9,quinn@gmail.com,joker,lender,2000
+8,joker@gmail.com,1234,borrower,35000
+10,riddler@gmail.com,riddle,admin,0
