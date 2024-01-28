@@ -1,0 +1,157 @@
+body{
+    background-color:#06142E;
+    font-family:inter,sans-serif;
+    color:ghostwhite;
+    text-align: center;
+    padding:30vh;
+}
+
+a{
+  text-decoration: none;
+  color:#08d;
+}
+
+nav{
+    display:block;
+    height:48px;
+    text-align:center;
+    background-color:#171718;
+
+}
+h1{
+    font-weight:200;
+    color:#BD83B8;
+}
+
+nav li{
+    color:#F1916D;
+    font-size:18pt;
+    display:inline-block;
+    margin:12px;
+}
+
+.dir{
+    font-size:12pt;
+    color:#F5D7DB;
+    font-weight:100;
+
+}
+
+.dir a{
+    color:#F5D7DB;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px;
+}
+
+.info{
+    display:block;
+    /* background-image: url('/static/bg.jpg'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:360px;
+}
+
+footer{
+    background-color:#473E66 ;
+    text-align:center
+  }
+  footer li{
+    display: inline-block;
+    padding:24px;
+    color:#ffffff;
+    font-weight:200;
+    font-size:12pt;
+
+
+  }
+
+  footer h5{
+    color:#bd83b8;
+    font-size: 18pt;
+  }
+
+  .slab{
+    
+    border-radius: 50px;
+border-top: 2px solid #F5D7DB;
+
+border-left: 2px solid #F5D7DB;
+
+background: linear-gradient(58deg, rgba(245, 215, 219, 0.55) 5.85%, rgba(245, 215, 219, 0.12) 83.09%);
+
+box-shadow: 100px 24px 90px 0px rgba(0, 0, 0, 0.50);
+backdrop-filter: blur(2px);
+padding:24px;
+
+
+  }
+
+  .heading,.content{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:black;
+    opacity:100%;
+    font-size:12pt;
+    font-weight:200;
+
+  }
+
+  /* #about us{
+    
+  } */
+
+  label, input, button {
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .submit {
+    background-color: #08d;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 30px;
+    margin-top: 38px;
+    outline: 0;
+    text-align: center;
+    width: 15%;
+  }
+
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .one h1 {
+    text-align: center;
+    padding-bottom: 5px;
+  }
+  .one h1:before {
+    width: 28px;
+    height: 5px;
+    display: block;
+    content: "";
+    position: relative;
+    top: 68px;
+    left: 50%;
+    margin-left: -14px;
+    background-color: #b80000;
+  }
+  .one h1:after {
+    width: 100px;
+    height: 1px;
+    display: block;
+    content: "";
+    position: relative;
+    margin-top: 25px;
+    left: 50%;
+    margin-left: -50px;
+    background-color: #b80000;
+  }
+
+  

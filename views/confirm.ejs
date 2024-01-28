@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+<H1>Loan History</H1>
+
+<table border = 1 class="center" style="border-color: azure;">
+         <thead style="color:antiquewhite">
+            <td>Loan ID</td>
+            <td>Borrower ID</td>
+            <td>Amount</td>
+            <td>Rate of Interest</td>
+            <td>Duration</td>
+            <td>Status</td>
+         </thead>
+         
+         <% locals.rows.forEach(row => {%>
+            <tr align="center">
+               <td><%= row.id %></td>
+               <td><%= row.user_id %></td>
+               <td><%= row.amount %></td>
+               <td><%= row.rate %></td>
+               <td><%= row.duration %></td>
+               <td><%= row.status %></td>
+            </tr>
+         <% }); %>
+      </table>
+      <br>
+      <h2>Are you sure?</h2>
+      <div display="flex">
+        <a href="/confirm/<%=id%>">Yes</a> | 
+        <a href="/">No</a>
+      </div>
+</body>
+</html>

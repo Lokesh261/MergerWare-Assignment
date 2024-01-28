@@ -1,0 +1,60 @@
+body{
+    background-color:#06142E;
+    font-family:inter,sans-serif;
+    color:ghostwhite;
+    text-align: center;
+    padding:30vh;
+}
+
+a{
+    text-decoration: none;
+    color:#08d;
+  }
+  
+h1{
+    font-weight:200;
+    color:#BD83B8;
+}
+
+.dir{
+    font-size:12pt;
+    color:#F5D7DB;
+    font-weight:100;
+
+}
+
+.submit {
+    background-color: #08d;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 30px;
+    margin-top: 38px;
+    outline: 0;
+    text-align: center;
+    width: 15%;
+  }
+
+
+  input{
+    padding:5px;
+    margin:5px;
+  }
+
+  button{
+    color: darkblue;
+    background-color:bisque;
+    border-radius: 15%;
+  }
+
+  table{
+    table-layout: fixed ;
+  width: 100% ;
+  }
+
+  td{
+    text-align: center;
+  }
