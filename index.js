@@ -1,6 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const app = express();
 const port = 3000;
@@ -32,13 +34,20 @@ app.post("/registered", async(req,res)=>{
     let email = await req.body.email;
     let pword = await req.body.password;
     let role = await req.body.role;
-    try{
-    let query = await db.query("INSERT into users (email, password, role) values ($1, $2, $3) returning *",[email,pword,role]);
-    console.log(query.rows[0]);
-    res.redirect("/")
-    } catch(err) {
-        console.log(err);
-    }
+
+    //hashing password using 10 rounds of bcrypt
+    bcrypt.hash(pword,10,(err,hash)=>{
+        console.log(hash);
+        const hashpw = hash;
+        console.log((typeof(hash)));
+        try{
+            db.query("INSERT into users (email, password, role) values ($1, $2, $3) returning *",[email,hashpw,role]);
+            res.redirect("/")
+            } catch(err) {
+                console.log(err);
+            }
+    });
+    
 })
 
 app.get("/log", async(req,res)=>{
@@ -53,10 +62,16 @@ app.post("/login", async(req,res)=>{
     let email = await req.body.email;
     let pword = await req.body.password;
     
-    try{
-        let query = await db.query("Select * from users where email=$1",[email])
-        let checkp = query.rows[0].password;
-        if (pword != checkp){
+    let query = await db.query("Select * from users where email=$1",[email])
+    let checkp = query.rows[0].password;
+
+    //comapring hash of entered password with hash in database with bcrypt.compare
+    bcrypt.compare(pword, checkp, (err, result) => {
+        if (err) {
+            res.status(500).json({
+            error: "Server error",
+            });}
+        else if(result!=true){
             res.render("login.ejs",{message:"Incorrect Password!"})
         }
         else{
@@ -66,7 +81,7 @@ app.post("/login", async(req,res)=>{
             if(role == "borrower"){
                 let balance = 0;
                 try{
-                    let funds = await db.query("Select * from loans where user_id = $1 and status = 'funded'",[query.rows[0].id]);
+                    let funds = db.query("Select * from loans where user_id = $1 and status = 'funded'",[query.rows[0].id]);
                     } catch(err) {
                     console.log(err);
                 }
@@ -81,9 +96,7 @@ app.post("/login", async(req,res)=>{
             }
 
         }
-    } catch(err){
-        console.log(err);
-    }
+    });
 });
 
 app.get("/check_balance", async(req,res)=>{
@@ -168,7 +181,10 @@ app.get("/confirm/:id", async(req,res)=>{
     await db.query("Update users set amount=amount+$1 where id=$2 ",[newVal,borrow_id]);
     await db.query("Update users set amount=amount-$1 where id=$2 ",[newVal,currUser]);
     await db.query("Update loans set status='funded' where id=$1 ",[id]);
-    res.render("success.ejs",{id:currUser});
+
+    let query = await db.query("Select * from loans where id=$1",[id]);
+    let rows = query.rows;
+    res.render("success.ejs",{id:currUser, rows});
 })
 
 //authentication to be added for admin priveleges
